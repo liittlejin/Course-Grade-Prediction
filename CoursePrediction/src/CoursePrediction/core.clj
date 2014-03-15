@@ -138,10 +138,6 @@
     {:body (format "Hello world %s with %s" uri params)})
 
 
-#_(en/deftemplate homepage
-   (en/xml-resource "homepage.html")
-   [request]
-)
 
 
 (def totalStep (atom 0))
