@@ -17,8 +17,9 @@
                  [org.clojure/tools.trace "0.7.5"]
                  [org.clojure/data.json "0.2.4"]
                  [ring/ring-json "0.2.0"]
+                 [org.clojure/clojurescript "0.0-1450"]
                  ]
     :plugins [[lein-ring "0.8.10"][lein-beanstalk "0.2.7"]]
   :ring {:handler CoursePrediction.core/app2}
-  
+
   )
