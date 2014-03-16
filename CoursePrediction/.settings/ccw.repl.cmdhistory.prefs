@@ -1,2 +1,2 @@
-cmdhistory=["(save-instances \:csv \\"test.csv\\" ds)" "(save-instances \:csv \\"/test.csv\\" ds)" "\=> (save-instances \:csv \\"file\:///Users/hangxu/Desktop/test.csv\\" ds)" "(save-instances \:csv \\"file\:///Users/hangxu/Desktop/test.csv\\" ds)" "ds" "(classifier-classify classifier instance)" "(dataset-seq titanic-testds)" "classifier"]
+cmdhistory=["(save-instances \:csv \\"test.csv\\" ds)" "(save-instances \:csv \\"/test.csv\\" ds)" "\=> (save-instances \:csv \\"file\:///Users/hangxu/Desktop/test.csv\\" ds)" "(save-instances \:csv \\"file\:///Users/hangxu/Desktop/test.csv\\" ds)" "ds" "(classifier-classify classifier instance)" "(dataset-seq titanic-testds)" "classifier" "(predictGrade \\"B,B,B,B,B,B,B,B,B,B,B,B,B,B,?\\")"]
 eclipse.preferences.version=1

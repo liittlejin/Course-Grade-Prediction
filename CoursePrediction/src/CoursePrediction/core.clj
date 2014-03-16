@@ -141,125 +141,92 @@
 
 
 
+;(def titanicds (load-instances :arff "data/trainingData.arff"))
+;(def titanicds (dataset-set-class titanicds :425))
+;(dataset-class-index titanicds)
+;(def evaluation (classifier-evaluate (make-classifier :decision-tree :c45)
+                                           :cross-validation titanicds 4))
+;(println (:summary evaluation))
+;(println (:confusion-matrix evaluation))
+;evaluation
+;;
+;(def titanic-testds (load-instances :arff "data/testData.arff"))
+;(def titanic-testds (dataset-set-class titanic-testds :425))
+;(def classifier (classifier-train (make-classifier :decision-tree :c45) titanicds))
+#_(def preds (for [instance (dataset-seq titanic-testds)]
+                      (name (classifier-classify classifier instance))))
 
-(def totalStep (atom 0))
-(def currentBoard (atom {}))
-
-(def boardSize (atom 3))
-
-(defn resetBoard [size] 
-  (loop [i 0 board []]
-    (if (>= i size)  
-      (reset! currentBoard board)
-      (recur (inc i) (conj board (vec (range 0 size))))
- 
-   )
-  )
-  
-)
-
-(defn find-ox [r c board]
-  (get (get board r) c)
-  )
-
-(defn win-detect [r c board OorX]
-  (cond 
-    (= (find-ox r c board) (find-ox (+ r 1) c board) (find-ox (+ r 2) c board) OorX) true
-    (= (find-ox r c board) (find-ox (+ r 1) c board) (find-ox (- r 1) c board) OorX) true
-    (= (find-ox r c board) (find-ox (- r 1) c board) (find-ox (- r 2) c board) OorX) true
-    (= (find-ox r c board) (find-ox (+ r 1) (+ c 1) board) (find-ox (+ r 2) (+ c 2) board) OorX) true
-    (= (find-ox r c board) (find-ox (+ r 1) (+ c 1) board) (find-ox (- r 1) (- c 1) board) OorX) true
-    (= (find-ox r c board) (find-ox (- r 2) (- c 2) board) (find-ox (- r 1) (- c 1) board) OorX) true
-    (= (find-ox r c board) (find-ox r (+ c 1) board) (find-ox r (+ c 2) board) OorX) true
-    (= (find-ox r c board) (find-ox r (+ c 1) board) (find-ox r (- c 1) board) OorX) true
-    (= (find-ox r c board) (find-ox r (- c 1) board) (find-ox r (- c 2) board) OorX) true
-    (= (find-ox r c board) (find-ox (- r 1) (+ c 1) board) (find-ox (- r 2) (+ c 2) board) OorX) true
-    (= (find-ox r c board) (find-ox (- r 1) (+ c 1) board) (find-ox (+ r 1) (- c 1) board) OorX) true
-    (= (find-ox r c board) (find-ox (+ r 1) (- c 1) board) (find-ox (+ r 2) (- c 2) board) OorX) true
-    :else false
-    )
-  
-  
-  )
-
-(defn placeRC [r c OorX]
-  (let [tempBoard (assoc-in @currentBoard [r c] OorX)]
-       (reset! currentBoard tempBoard)
-    )
-)
-
-
-(defn helper [i]
-  (loop [j (dec @boardSize)]
-      (if (or (< j 0) (number? (find-ox i j @currentBoard)))
-              j
-           (recur (dec j)) 
-    )
-  )
-  )
-
-(defn computerMove [] 
-  (loop [i (dec @boardSize), result []]
-    (if (and (< i 0) (> (count result) 0))
-    (get  (vec result) 0)
-   ; (vec result)
-     (recur (dec i)(if (>= (helper i) 0)
-                     (conj result (vector i (helper i)))
-                 #_   (do 
-                       (println i)
-                       (println (helper i))
-                      )))
-  )
-  ))
-
-(defn computerMove2 [] 
-  (loop [i (dec @boardSize), result []]
-    (if (and (< i 0) (> (count result) 0))
-  #_  (get  (vec result) 0)
-    (vec result)
-     (recur (dec i)(if (>= (helper i) 0)
-                     (conj result (vector i (helper i)))
-                 #_   (do 
-                       (println i)
-                       (println (helper i))
-                      )))
-  )
-  ))
-
-(defn computerTurn [computer]
-  
-    (do
-      (placeRC (get computer 0) (get computer 1) "o")
-    (cond 
-      (win-detect (get computer 0) (get computer 1) @currentBoard "o") {:type "comwon"}
-      :else (do 
-             (swap! totalStep inc)
-             (if (>= @totalStep (* @boardSize @boardSize)) 
-               {:type "tie"}
-               (do
-               ;  (placeRC (get computer 0) (get computer 1) "o")
-               {:type "commove" :r (get computer 0) :c (get computer 1)}
-               ))           
-            )  
+(defn makePrediction [input]
+  (do
+    (updateTestData input)
+    (let [test (load-instances :arff "data/testData.arff")
+          testClass (dataset-set-class test :425)
+          training (load-instances :arff "data/trainingData.arff")
+          trainingClass (dataset-set-class training :425)
+          classifier (classifier-train (make-classifier :decision-tree :c45) trainingClass)
+          preds (for [instance (dataset-seq testClass)]
+                       (name (classifier-classify classifier instance)))
+          ]
+      preds
       )
-)
-  
+    )
   )
+
+;(makePrediction "B,B,B,B,B,B,B,B,B,B,B,B,B,C,?")
+
+
+(defn updateTestData [input]
+  (let [file-content-str (slurp  "data/prefix.txt")]
+  (with-open [wrtr (writer "data/testData.arff")]
+  (.write wrtr (str  file-content-str "\n\r" input)))
+  )
+  )
+
+
+(defn updateClassifier [input]
+  (let [inputString (str "\n\r" input)]
+  (with-open [wrtr (writer "data/trainingData.arff" :append true)]
+  (.write wrtr inputString))))
+
+;(updateClassifier "B,B,B,B,B,B,B,B,B,B,B,B,B,B,C")
+
+
+(defn getSummary [input]
+  (do
+    (let [ds (load-instances :arff "data/trainingData.arff")
+         dsClass (dataset-set-class ds :425)
+         evaluation (classifier-evaluate (make-classifier :decision-tree :c45)
+                                          :cross-validation dsClass 4)]
+      (:summary evaluation)
+         )
+    ))
+
+(defn getMatrix [input]
+  (do
+  ;  (updateTestData input)
+    (let [ds (load-instances :arff "data/trainingData.arff")
+         dsClass (dataset-set-class ds :425)
+         evaluation (classifier-evaluate (make-classifier :decision-tree :c45)
+                                          :cross-validation dsClass 4)]
+      (:confusion-matrix evaluation)
+         )
+    ))
+
+
+;(println (getSummary "B,B,B,B,B,B,B,B,B,B,B,B,B,B,?"))
+
+
 
 
 (defroutes app2*
   
      (compojure.route/resources "/")
      (HEAD "/" [] "")
-     (GET "/" [] (ring.util.response/resource-response "homepage.html"))
+     (GET "/" [] (ring.util.response/resource-response "index.html"))
      
    (POST  "/" request 
           (let [newSize (read-string ((request :params) "size"))]
           (do
-        ;   (prn request)
-           (resetBoard newSize)
-           (reset! boardSize newSize)
-           (reset! totalStep 0)
            (response {:type ((request :params) "type")})
         )
           )
@@ -269,26 +236,11 @@
               (let [newSize (read-string ((request :params) "size"))]
               
             (do
-          ;    (prn  newSize)
-              (reset! boardSize  newSize)
-              (reset! currentBoard (resetBoard newSize))
+        
             (response  {:type newSize} )        
          )
          )
             )
-   (POST  "/move" request 
-            (do
-            (swap! totalStep inc)
-            (cond 
-              
-              (win-detect (Integer. ((request :params) "r")) (Integer. ((request :params) "c")) (placeRC (Integer. ((request :params) "r")) (Integer. ((request :params) "c")) "x") "x") (response {:type "userwon"})
-              (>= @totalStep (* @boardSize @boardSize)) (response {:type "tie"})
-              
-              :else (response (computerTurn (computerMove)))
-              )
-            
-            )
-    )
 )
 (def app2
   (-> (wrap-params app2*)
@@ -297,46 +249,10 @@
 
 
 
-(def titanicds (load-instances :arff "trainingData.arff"))
-;(save-instances :csv "file:///Users/hangxu/Desktop/trainingData.csv" titanicds)
-
-(def titanicds (dataset-set-class titanicds :425))
-(dataset-class-index titanicds)
-
-(def evaluation (classifier-evaluate (make-classifier :decision-tree :c45)
-                                           :cross-validation titanicds 4))
-(println (:summary evaluation))
-(println (:confusion-matrix evaluation))
-
-
-(let [file-content-str (slurp  "prefix.txt")]
-  (println file-content-str)
-  )
-
-
-(def titanic-testds (load-instances :arff "testData.arff"))
-
-
-titanic-testds
-(def titanic-testds (dataset-set-class titanic-testds :425))
-
-(def inputStr (clojure.string/trim-newline "\n\rB,B,B,B,B,B,B,B,B,B,B,B,B,B,B"))
-
-(let [file-content-str (slurp  "prefix.txt")]
-  (with-open [wrtr (writer "testData.arff")]
-  (.write wrtr (str file-content-str inputStr)))
-  )
 
 
 
 
-(with-open [wrtr (writer "trainingData.arff" :append true)]
-  (.write wrtr inputStr))
-
-(def classifier (classifier-train (make-classifier :decision-tree :c45) titanicds))
-(def preds (for [instance (dataset-seq titanic-testds)]
-                      (name (classifier-classify classifier instance))))
-preds
 
 
 
