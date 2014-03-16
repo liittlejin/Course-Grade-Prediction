@@ -1,0 +1,40 @@
+@relation course-grade
+
+@attribute 110 {A,B,C}
+@attribute 111 {A,B,C}
+@attribute 231 {A,B,C}
+@attribute 232 {A,B,C}
+@attribute 233 {A,B,C}
+@attribute 251 {A,B,C}
+@attribute 252 {A,B,C}
+@attribute 210 {A,B,C}
+@attribute 211 {A,B,C}
+@attribute 212 {A,B,C}
+@attribute 313 {A,B,C}
+@attribute 314 {A,B,C}
+@attribute 315 {A,B,C}
+@attribute 330 {A,B,C}
+
+@attribute 425 {A,B,C}
+
+@data
+A,A,A,A,A,A,A,A,A,A,A,A,A,A,A
+A,A,A,A,A,A,A,A,A,A,A,A,A,A,A
+A,A,A,A,A,A,A,A,A,A,A,A,A,A,A
+A,A,A,A,A,A,A,A,A,A,A,A,A,A,A
+A,A,A,A,A,A,A,A,A,A,A,A,A,A,A
+A,A,A,A,A,A,A,A,A,A,A,A,A,A,A
+A,A,A,A,A,A,A,A,A,A,A,A,A,A,A
+B,B,B,B,B,B,B,B,B,B,B,B,B,B,B
+B,B,B,B,B,B,B,B,B,B,B,B,B,B,B
+B,B,B,B,B,B,B,B,B,B,B,B,B,B,B
+C,C,C,C,C,C,C,C,C,C,C,C,C,C,C
+C,C,C,C,C,C,C,C,C,C,C,C,C,C,C
+C,C,C,C,C,C,C,C,C,C,C,C,C,C,C
+C,C,C,C,C,C,C,C,C,C,C,C,C,C,C
+B,B,B,B,B,B,B,B,B,B,B,B,B,B,B
+B,B,B,B,B,B,B,B,B,B,B,B,B,B,B
+B,B,B,B,B,B,B,B,B,B,B,B,B,B,B
+B,B,B,B,B,B,B,B,B,B,B,B,B,B,B
+B,B,B,B,B,B,B,B,B,B,B,B,B,B,B
+B,B,B,B,B,B,B,B,B,B,B,B,B,B,B

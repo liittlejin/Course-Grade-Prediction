@@ -1,5 +1,5 @@
 (ns CoursePrediction.core)
-(use 'clj-ml.io)
+(use 'clj-ml.classifiers 'clj-ml.data 'clj-ml.utils 'clj-ml.io)
 (use '[ring.adapter.jetty :only (run-jetty)])
 (use '[ring.util.response :as response])
 (use '[ring.middleware.params :only (wrap-params)])    ;optional
@@ -11,6 +11,8 @@
 (use '[ring.middleware.json])
 (require '[net.cgrand.enlive-html :as en])
 (import java.net.URL)
+(use 'clojure.java.io)
+(require '[clojure.java.io :as io])
 (require '[clojure.java.jdbc :as jdbc] )
 (require '[clojure.string :as str]
       ;   '[clojure.data.json :as json]
@@ -292,5 +294,50 @@
   (-> (wrap-params app2*)
       (wrap-json-params )
       (wrap-json-response)))
+
+
+
+(def titanicds (load-instances :arff "trainingData.arff"))
+;(save-instances :csv "file:///Users/hangxu/Desktop/trainingData.csv" titanicds)
+
+(def titanicds (dataset-set-class titanicds :425))
+(dataset-class-index titanicds)
+
+(def evaluation (classifier-evaluate (make-classifier :decision-tree :c45)
+                                           :cross-validation titanicds 4))
+(println (:summary evaluation))
+(println (:confusion-matrix evaluation))
+
+
+(let [file-content-str (slurp  "prefix.txt")]
+  (println file-content-str)
+  )
+
+
+(def titanic-testds (load-instances :arff "testData.arff"))
+
+
+titanic-testds
+(def titanic-testds (dataset-set-class titanic-testds :425))
+
+(def inputStr (clojure.string/trim-newline "\n\rB,B,B,B,B,B,B,B,B,B,B,B,B,B,B"))
+
+(let [file-content-str (slurp  "prefix.txt")]
+  (with-open [wrtr (writer "testData.arff")]
+  (.write wrtr (str file-content-str inputStr)))
+  )
+
+
+
+
+(with-open [wrtr (writer "trainingData.arff" :append true)]
+  (.write wrtr inputStr))
+
+(def classifier (classifier-train (make-classifier :decision-tree :c45) titanicds))
+(def preds (for [instance (dataset-seq titanic-testds)]
+                      (name (classifier-classify classifier instance))))
+preds
+
+
 
 

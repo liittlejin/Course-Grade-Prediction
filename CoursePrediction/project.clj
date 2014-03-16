@@ -5,7 +5,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [cc.artifice/clj-ml "0.5.0-SNAPSHOT"]
-                 [clj-ml "0.0.3-SNAPSHOT"]
+             ;    [clj-ml "0.0.3-SNAPSHOT"]
                  [ring "1.2.1"] ;"1.0.0"?
                  [compojure "1.1.6"]
                  [javax.servlet/servlet-api "2.5"]  ;recommended in ring github
