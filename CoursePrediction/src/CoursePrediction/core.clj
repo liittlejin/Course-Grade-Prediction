@@ -144,7 +144,7 @@
 ;(def titanicds (load-instances :arff "data/trainingData.arff"))
 ;(def titanicds (dataset-set-class titanicds :425))
 ;(dataset-class-index titanicds)
-;(def evaluation (classifier-evaluate (make-classifier :decision-tree :c45)
+#_(def evaluation (classifier-evaluate (make-classifier :decision-tree :c45)
                                            :cross-validation titanicds 4))
 ;(println (:summary evaluation))
 ;(println (:confusion-matrix evaluation))
