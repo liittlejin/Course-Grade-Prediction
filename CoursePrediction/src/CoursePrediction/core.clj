@@ -191,7 +191,7 @@
 ;(updateClassifier "B,B,B,B,B,B,B,B,B,B,B,B,B,B,C")
 
 
-(defn getSummary [input]
+(defn getSummary []
   (do
     (let [ds (load-instances :arff "data/trainingData.arff")
          dsClass (dataset-set-class ds :425)
@@ -201,7 +201,7 @@
          )
     ))
 
-(defn getMatrix [input]
+(defn getMatrix []
   (do
   ;  (updateTestData input)
     (let [ds (load-instances :arff "data/trainingData.arff")
@@ -213,7 +213,7 @@
     ))
 
 
-;(println (getSummary "B,B,B,B,B,B,B,B,B,B,B,B,B,B,?"))
+(println (getSummary))
 
 
 
@@ -225,23 +225,14 @@
      (GET "/" [] (ring.util.response/resource-response "index.html"))
      
    (POST  "/" request 
-          (let [newSize (read-string ((request :params) "size"))]
+          (let [inputString (str ((request :params) "input"))
+                result (makePrediction inputString)
+                summary (getSummary)
+                matrix (getMatrix)
+                ]
           (do
-           (response {:type ((request :params) "type")})
-        )
-          )
-   )
-    (POST  "/size" request 
-            
-              (let [newSize (read-string ((request :params) "size"))]
-              
-            (do
-        
-            (response  {:type newSize} )        
-         )
-         )
-            )
-)
+           (response {:type "preds" :result result :summary summary :matrix matrix})
+        ))))
 (def app2
   (-> (wrap-params app2*)
       (wrap-json-params )
