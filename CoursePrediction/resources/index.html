@@ -9,15 +9,29 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
+
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <body style="margin-top: 0;width:100%;height:100%;margin-left: 0;padding: 0">
 	<div id="container" style="width: 100%;height:100%;margin-top: 0;padding: 0">
 		<div id="header" style="background-color: green;width: 100%;height: 20%;margin-top: 0">
-			<h1 style="margin-top:0;text-align: center;padding-top: 10px;">Enter your grades</h1>
+			<h1 style="margin-top:0;text-align: center;padding-top: 10px;">We can predict your grade!</h1>
+            <h3 style="padding-left: 5px">How it works? I recommend you to take <a href="http://www.cs.uoregon.edu/Classes/13F/cis471/">CIS471</a> and/or <a href="http://www.cs.uoregon.edu/Classes/14W/cis472/">CIS472</a>, but make sure the prediction of the grades are not 'NP'. The 'correctness' of the prediction is largely depended on the data we have and methodology the system is using.</h3>
 		</div>
 
 		<div id="description"
 			style="background-color: #FFD700; height: 100%; width: 20%; float: left;margin-top: 0">
+
+           <p style="padding-left: 20px">Notes and References:</p>
+            <ul style="font-size: 24px;margin: 15px">
+                <li style="margin: 10px">We use <a href="http://en.wikipedia.org/wiki/C4.5_algorithm">C4.5</a></li>
+                <li style="margin: 10px"><a href="http://www.cs.waikato.ac.nz/ml/weka/">Weka</a></li>
+                <li style="margin: 10px"><a href="http://clojure.org/">Clojure</a></li>
+                <li style="margin: 10px"><a href="https://github.com/liittlejin/Course-Grade-Prediction">Source Code</a></li>
+                <li style="margin: 10px"><a href="http://ix.cs.uoregon.edu/~hang/haha.html">CIS650</a></li>
+                <li style="margin: 10px"><a href="https://www.cs.uoregon.edu">CIS Home</a></li>
+            </ul>
+
 
 		</div>
 
@@ -27,158 +41,450 @@
             <form style="float: left;padding-top:5px;padding-left: 5px">
             <label>CIS110:</label>
 
-				<select style="padding: 0" name="Grade">
+				<select id="110" style="padding: 0" name="Grade">
 					<option value="A">A</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
 					<option value="B">B</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
 					<option value="C">C</option>
+                    <option value="C+">C+</option>
+                    <option value="C-">C-</option>
+                    <option value="NP">NP-</option>
+                    <option value="P">P</option>
+                    <option value="?">?</option>
 				</select>
 
             </form>
-            <form style="float: left;padding-top:5px;padding-left: 5px">
-                <label>CIS110:</label>
 
-                <select style="padding: 0" name="Grade">
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                </select>
-
-            </form>
             <form style="float: left;padding-top:5px;padding-left: 5px">
                 <label>CIS111:</label>
 
-                <select style="padding: 0" name="Grade">
+                <select id="111" style="padding: 0" name="Grade">
                     <option value="A">A</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
                     <option value="B">B</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
                     <option value="C">C</option>
+                    <option value="C+">C+</option>
+                    <option value="C-">C-</option>
+                    <option value="NP">NP-</option>
+                    <option value="P">P</option>
+                    <option value="?">?</option>
                 </select>
 
             </form>
             <form style="float: left;padding-top:5px;padding-left: 5px">
                 <label>CIS210:</label>
 
-                <select style="padding: 0" name="Grade">
+                <select id="210" style="padding: 0" name="Grade">
                     <option value="A">A</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
                     <option value="B">B</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
                     <option value="C">C</option>
+                    <option value="C+">C+</option>
+                    <option value="C-">C-</option>
+                    <option value="NP">NP-</option>
+                    <option value="P">P</option>
+                    <option value="?">?</option>
                 </select>
 
             </form>
             <form style="float: left;padding-top:5px;padding-left: 5px">
                 <label>CIS211:</label>
 
-                <select style="padding: 0" name="Grade">
+                <select id="211" style="padding: 0" name="Grade">
                     <option value="A">A</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
                     <option value="B">B</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
                     <option value="C">C</option>
+                    <option value="C+">C+</option>
+                    <option value="C-">C-</option>
+                    <option value="NP">NP-</option>
+                    <option value="P">P</option>
+                    <option value="?">?</option>
                 </select>
 
             </form>
             <form style="float: left;padding-top:5px;padding-left: 5px">
                 <label>CIS212:</label>
 
-                <select style="padding: 0" name="Grade">
+                <select id="212" style="padding: 0" name="Grade">
                     <option value="A">A</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
                     <option value="B">B</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
                     <option value="C">C</option>
+                    <option value="C+">C+</option>
+                    <option value="C-">C-</option>
+                    <option value="NP">NP-</option>
+                    <option value="P">P</option>
+                    <option value="?">?</option>
                 </select>
 
             </form>
             <form style="float: left;padding-top:5px;padding-left: 5px">
                 <label>MTH231:</label>
 
-                <select style="padding: 0" name="Grade">
+                <select id="231" style="padding: 0" name="Grade">
                     <option value="A">A</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
                     <option value="B">B</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
                     <option value="C">C</option>
+                    <option value="C+">C+</option>
+                    <option value="C-">C-</option>
+                    <option value="NP">NP-</option>
+                    <option value="P">P</option>
+                    <option value="?">?</option>
                 </select>
 
             </form>
             <form style="float: left;padding-top:5px;padding-left: 5px">
                 <label>MTH232:</label>
 
-                <select style="padding: 0" name="Grade">
+                <select id="232" style="padding: 0" name="Grade">
                     <option value="A">A</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
                     <option value="B">B</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
                     <option value="C">C</option>
+                    <option value="C+">C+</option>
+                    <option value="C-">C-</option>
+                    <option value="NP">NP-</option>
+                    <option value="P">P</option>
+                    <option value="?">?</option>
                 </select>
 
             </form>
             <form style="float: left;padding-top:5px;padding-left: 5px">
                 <label>MTH233:</label>
 
-                <select style="padding: 0" name="Grade">
+                <select id="233" style="padding: 0" name="Grade">
                     <option value="A">A</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
                     <option value="B">B</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
                     <option value="C">C</option>
+                    <option value="C+">C+</option>
+                    <option value="C-">C-</option>
+                    <option value="NP">NP-</option>
+                    <option value="P">P</option>
+                    <option value="?">?</option>
                 </select>
 
             </form>
             <form style="float: left;padding-top:5px;padding-left: 5px">
                 <label>MTH251:</label>
 
-                <select style="padding: 0" name="Grade">
+                <select id="251" style="padding: 0" name="Grade">
                     <option value="A">A</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
                     <option value="B">B</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
                     <option value="C">C</option>
+                    <option value="C+">C+</option>
+                    <option value="C-">C-</option>
+                    <option value="NP">NP-</option>
+                    <option value="P">P</option>
+                    <option value="?">?</option>
                 </select>
 
             </form>
             <form style="float: left;padding-top:5px;padding-left: 5px">
                 <label>MTH252:</label>
 
-                <select style="padding: 0" name="Grade">
+                <select id="252" style="padding: 0" name="Grade">
                     <option value="A">A</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
                     <option value="B">B</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
                     <option value="C">C</option>
+                    <option value="C+">C+</option>
+                    <option value="C-">C-</option>
+                    <option value="NP">NP-</option>
+                    <option value="P">P</option>
+                    <option value="?">?</option>
                 </select>
 
             </form>
             <form style="float: left;padding-top:5px;padding-left: 5px">
                 <label>CIS313:</label>
 
-                <select style="padding: 0" name="Grade">
+                <select id="313" style="padding: 0" name="Grade">
                     <option value="A">A</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
                     <option value="B">B</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
                     <option value="C">C</option>
+                    <option value="C+">C+</option>
+                    <option value="C-">C-</option>
+                    <option value="NP">NP-</option>
+                    <option value="P">P</option>
+                    <option value="?">?</option>
                 </select>
 
             </form>
             <form style="float: left;padding-top:5px;padding-left: 5px">
                 <label>CIS314:</label>
 
-                <select style="padding: 0" name="Grade">
+                <select id="314" style="padding: 0" name="Grade">
                     <option value="A">A</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
                     <option value="B">B</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
                     <option value="C">C</option>
+                    <option value="C+">C+</option>
+                    <option value="C-">C-</option>
+                    <option value="NP">NP-</option>
+                    <option value="P">P</option>
+                    <option value="?">?</option>
                 </select>
 
             </form>
             <form style="float: left;padding-top:5px;padding-left: 5px">
                 <label>CIS315:</label>
 
-                <select style="padding: 0" name="Grade">
+                <select id="315" style="padding: 0" name="Grade">
                     <option value="A">A</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
                     <option value="B">B</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
                     <option value="C">C</option>
+                    <option value="C+">C+</option>
+                    <option value="C-">C-</option>
+                    <option value="NP">NP-</option>
+                    <option value="P">P</option>
+                    <option value="?">?</option>
                 </select>
 
             </form>
             <form style="float: left;padding-top:5px;padding-left: 5px">
                 <label>CIS330:</label>
 
-                <select style="padding: 0" name="Grade">
+                <select id="330" style="padding: 0" name="Grade">
                     <option value="A">A</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
                     <option value="B">B</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
                     <option value="C">C</option>
+                    <option value="C+">C+</option>
+                    <option value="C-">C-</option>
+                    <option value="NP">NP-</option>
+                    <option value="P">P</option>
+                    <option value="?">?</option>
                 </select>
 
             </form>
+                <form style="float: left;padding-top:5px;padding-left: 5px">
+                    <label>CIS415:</label>
+
+                    <select id="415" style="padding: 0" name="Grade">
+                        <option value="A">A</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B">B</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="C">C</option>
+                        <option value="C+">C+</option>
+                        <option value="C-">C-</option>
+                        <option value="NP">NP-</option>
+                        <option value="P">P</option>
+                        <option value="?">?</option>
+                    </select>
+
+                </form>
+                <form style="float: left;padding-top:5px;padding-left: 5px">
+                    <label>CIS422:</label>
+
+                    <select id="422" style="padding: 0" name="Grade">
+                        <option value="A">A</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B">B</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="C">C</option>
+                        <option value="C+">C+</option>
+                        <option value="C-">C-</option>
+                        <option value="NP">NP-</option>
+                        <option value="P">P</option>
+                        <option value="?">?</option>
+                    </select>
+
+                </form>
+                <form style="float: left;padding-top:5px;padding-left: 5px">
+                    <label>CIS425:</label>
+
+                    <select id="425" style="padding: 0" name="Grade">
+                        <option value="A">A</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B">B</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="C">C</option>
+                        <option value="C+">C+</option>
+                        <option value="C-">C-</option>
+                        <option value="NP">NP-</option>
+                        <option value="P">P</option>
+                        <option value="?">?</option>
+                    </select>
+
+                </form>
+                <form style="float: left;padding-top:5px;padding-left: 5px">
+                    <label>CIS432:</label>
+
+                    <select id="432" style="padding: 0" name="Grade">
+                        <option value="A">A</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B">B</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="C">C</option>
+                        <option value="C+">C+</option>
+                        <option value="C-">C-</option>
+                        <option value="NP">NP-</option>
+                        <option value="P">P</option>
+                        <option value="?">?</option>
+                    </select>
+
+                </form>
+            <form style="float: left;padding-top:5px;padding-left: 5px">
+                <label>CIS451:</label>
+
+                <select id="451" style="padding: 0" name="Grade">
+                    <option value="A">A</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B">B</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="C">C</option>
+                    <option value="C+">C+</option>
+                    <option value="C-">C-</option>
+                    <option value="NP">NP-</option>
+                    <option value="P">P</option>
+                    <option value="?">?</option>
+                </select>
+
+            </form>
+            <form style="float: left;padding-top:5px;padding-left: 5px">
+                <label>CIS471:</label>
+
+                <select id="471" style="padding: 0" name="Grade">
+                    <option value="A">A</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B">B</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="C">C</option>
+                    <option value="C+">C+</option>
+                    <option value="C-">C-</option>
+                    <option value="NP">NP-</option>
+                    <option value="P">P</option>
+                    <option value="?">?</option>
+                </select>
+
+            </form>
+            <form style="float: left;padding-top:5px;padding-left: 5px">
+                <label>CIS472:</label>
+
+                <select id="472" style="padding: 0" name="Grade">
+                    <option value="A">A</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B">B</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="C">C</option>
+                    <option value="C+">C+</option>
+                    <option value="C-">C-</option>
+                    <option value="NP">NP-</option>
+                    <option value="P">P</option>
+                    <option value="?">?</option>
+                </select>
+
+            </form>
+            </div>
+            <div>
+                <div style="clear: left;padding-top:20px;padding-left: 5px">
+                    <label>Select the Course You want to predict:</label>
+
+                    <select  id="courseToPredict" style="padding: 0">
+                        <option value="415">CIS415</option>
+                        <option value="422">CIS422</option>
+                        <option value="425">CIS425</option>
+                        <option value="432">CIS432</option>
+                        <option value="451">CIS451</option>
+                        <option value="471">CIS471</option>
+                        <option value="472">CIS472</option>
+                    </select>
+                    <button onclick="predict()" style="margin:auto;padding-left: 5px">Predict Your Selected Course</button>
+                    <button onclick="updateTraningData()" style="margin:auto;padding-left: 5px">Add Your Grades to Our System</button>
+                </div>
 
             </div>
 
 
-            <button onclick="predict()" style="position: absolute;top: 30%;left: 50%">Predict Your CIS425 Grade</button>
+            <div>
+                <div style="clear: left;padding-top:20px;padding-left: 5px;">
+                   <div style="height:100%;width:33%;display: inline-table">
+                   <p>The Prediction of your grade is:</p>
+                       <p id="prediction">The prediction will be displayed here</p>
+                   </div>
+                    <div style="height:100%;width:33%;display: inline-table">
+                        <p>
+
+                            <a href="http://stackoverflow.com/questions/15214179/how-to-read-the-classifier-confusion-matrix-in-weka">The Confusion Matrix:</a>
+                            </p>
+                        <textarea style="min-width: 80%;min-height: 200px" id="cm">You will get the confusion Matrix here.</textarea>
+                    </div>
+                    <div style="height:100%;width:33%;display: inline-table">
+                        <p>
+                            <a href="http://weka.wikispaces.com/Generating+classifier+evaluation+output+manually">Summary of The Classifier:</a>
+
+                        </p>
+                        <textarea style="min-height: 200px;min-width: 80%"  id="sum">You will get the summary here</textarea>
+                    </div>
+                </div>
+
+            </div>
+
+
+
 
 
         </div>
@@ -192,21 +498,101 @@
 </body>
 <script>
 	$(document).ready(init);
-    var URL = "http://192.168.1.5:8080/";
+    var URL = "http://ix.cs.uoregon.edu:3838/course-prediction/";
+ //   var URL = "http://localhost:8080/";
 	function init() {
 		// alert('hello world');
 	}
+
+
     function predict(){
-        $.post(URL, {input: "A,A,A,A,A,A,A,A,A,A,A,A,A,A,A"}, function(data){
+        var courseInput = document.getElementById("courseToPredict").value;
+
+        if (document.getElementById(courseInput).value != "?"){
+
+
+            alert("Please Set "+courseInput+" as ?, since you want to predict this course");
+            return;
+        }
+
+        var currentInput = document.getElementById("110").value+","+
+                document.getElementById("111").value+","+
+                document.getElementById("231").value+","+
+                document.getElementById("232").value+","+
+                document.getElementById("233").value+","+
+                document.getElementById("251").value+","+
+                document.getElementById("252").value+","+
+                document.getElementById("210").value+","+
+                document.getElementById("211").value+","+
+                document.getElementById("212").value+","+
+                document.getElementById("313").value+","+
+                document.getElementById("314").value+","+
+                document.getElementById("315").value+","+
+                document.getElementById("330").value+","+
+                document.getElementById("425").value+","+
+                document.getElementById("415").value+","+
+                document.getElementById("422").value+","+
+                document.getElementById("432").value+","+
+                document.getElementById("451").value+","+
+                document.getElementById("471").value+","+
+                document.getElementById("472").value;
+
+
+
+
+        $.post(URL, {input: currentInput,desireCourse: courseInput}, function(data){
             if (data.type=="preds"){
-                alert(data.result);
-                alert(data.matrix);
-                alert(data.summary);
+                var msg = "";
+                if (data.result=="A"||data.result=="A+")
+                {
+                    msg = "Congratulations!";
+                } else {
+                    msg= "well, this system might not tell you the truth, you can certainly get an A if you work hard";
+                }
+
+                document.getElementById("prediction").innerHTML = "Your "+courseInput+"'s grade might be:<br>"+ data.result+"<br>"+msg;
+                document.getElementById("cm").value = data.matrix;
+                document.getElementById("sum").value = data.summary;
+
             } else {
-                alert("something wrong with the server");
+                alert("something wrong with the server, please contact the author:hang@cs.uoregon.edu");
             }
         });
     }
+
+    function updateTraningData(){
+
+        var currentInput = document.getElementById("110").value+","+
+                document.getElementById("111").value+","+
+                document.getElementById("231").value+","+
+                document.getElementById("232").value+","+
+                document.getElementById("233").value+","+
+                document.getElementById("251").value+","+
+                document.getElementById("252").value+","+
+                document.getElementById("210").value+","+
+                document.getElementById("211").value+","+
+                document.getElementById("212").value+","+
+                document.getElementById("313").value+","+
+                document.getElementById("314").value+","+
+                document.getElementById("315").value+","+
+                document.getElementById("330").value+","+
+                document.getElementById("425").value+","+
+                document.getElementById("415").value+","+
+                document.getElementById("422").value+","+
+                document.getElementById("432").value+","+
+                document.getElementById("451").value+","+
+                document.getElementById("471").value+","+
+                document.getElementById("472").value;
+
+        $.post(URL+"update", {input: currentInput}, function(data){
+            if (data.type=="success"){
+                alert("Thank you for input your data")
+            } else {
+                alert("something wrong with the server, please contact the author:hang@cs.uoregon.edu");
+            }
+        });
+    }
+
 
 </script>
 

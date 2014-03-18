@@ -1,20 +1,26 @@
 @relation course-grade
 
-@attribute 110 {A,B,C}
-@attribute 111 {A,B,C}
-@attribute 231 {A,B,C}
-@attribute 232 {A,B,C}
-@attribute 233 {A,B,C}
-@attribute 251 {A,B,C}
-@attribute 252 {A,B,C}
-@attribute 210 {A,B,C}
-@attribute 211 {A,B,C}
-@attribute 212 {A,B,C}
-@attribute 313 {A,B,C}
-@attribute 314 {A,B,C}
-@attribute 315 {A,B,C}
-@attribute 330 {A,B,C}
+@attribute 110 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
+@attribute 111 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
+@attribute 231 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
+@attribute 232 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
+@attribute 233 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
+@attribute 251 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
+@attribute 252 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
+@attribute 210 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
+@attribute 211 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
+@attribute 212 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
+@attribute 313 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
+@attribute 314 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
+@attribute 315 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
+@attribute 330 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
 
-@attribute 425 {A,B,C}
+@attribute 425 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
+@attribute 415 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
+@attribute 422 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
+@attribute 432 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
+@attribute 451 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
+@attribute 471 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
+@attribute 472 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
 
 @data

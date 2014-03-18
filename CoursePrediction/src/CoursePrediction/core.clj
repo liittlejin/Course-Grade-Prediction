@@ -156,21 +156,7 @@
 #_(def preds (for [instance (dataset-seq titanic-testds)]
                       (name (classifier-classify classifier instance))))
 
-(defn makePrediction [input]
-  (do
-    (updateTestData input)
-    (let [test (load-instances :arff "data/testData.arff")
-          testClass (dataset-set-class test :425)
-          training (load-instances :arff "data/trainingData.arff")
-          trainingClass (dataset-set-class training :425)
-          classifier (classifier-train (make-classifier :decision-tree :c45) trainingClass)
-          preds (for [instance (dataset-seq testClass)]
-                       (name (classifier-classify classifier instance)))
-          ]
-      preds
-      )
-    )
-  )
+
 
 ;(makePrediction "B,B,B,B,B,B,B,B,B,B,B,B,B,C,?")
 
@@ -191,21 +177,24 @@
 ;(updateClassifier "B,B,B,B,B,B,B,B,B,B,B,B,B,B,C")
 
 
-(defn getSummary []
+(defn getSummary [input]
   (do
     (let [ds (load-instances :arff "data/trainingData.arff")
-         dsClass (dataset-set-class ds :425)
+         dsClass (dataset-set-class ds input)
          evaluation (classifier-evaluate (make-classifier :decision-tree :c45)
                                           :cross-validation dsClass 4)]
       (:summary evaluation)
          )
     ))
 
-(defn getMatrix []
+
+
+
+(defn getMatrix [input]
   (do
   ;  (updateTestData input)
     (let [ds (load-instances :arff "data/trainingData.arff")
-         dsClass (dataset-set-class ds :425)
+         dsClass (dataset-set-class ds input)
          evaluation (classifier-evaluate (make-classifier :decision-tree :c45)
                                           :cross-validation dsClass 4)]
       (:confusion-matrix evaluation)
@@ -213,7 +202,21 @@
     ))
 
 
-(println (getSummary))
+(defn makePrediction [input key]
+  (do
+    (updateTestData input)
+    (let [test (load-instances :arff "data/testData.arff")
+          testClass (dataset-set-class test key)
+          training (load-instances :arff "data/trainingData.arff")
+          trainingClass (dataset-set-class training key)
+          classifier (classifier-train (make-classifier :decision-tree :c45) trainingClass)
+          preds (for [instance (dataset-seq testClass)]
+                       (name (classifier-classify classifier instance)))
+          ]
+      preds
+      )
+    )
+  )
 
 
 
@@ -226,12 +229,21 @@
      
    (POST  "/" request 
           (let [inputString (str ((request :params) "input"))
-                result (makePrediction inputString)
-                summary (getSummary)
-                matrix (getMatrix)
+                inputCourse (keyword (str ((request :params) "desireCourse")))
+                result (makePrediction inputString inputCourse)
+                summary (getSummary inputCourse)
+                matrix (getMatrix inputCourse)
                 ]
           (do
+            
            (response {:type "preds" :result result :summary summary :matrix matrix})
+        )))
+      (POST  "/update" request 
+          (let [inputString (str ((request :params) "input"))
+                ]
+          (do
+            (updateClassifier inputString)
+           (response {:type "success"})
         ))))
 (def app2
   (-> (wrap-params app2*)
