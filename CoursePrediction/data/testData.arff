@@ -24,4 +24,4 @@
 @attribute 472 {A,B,C,A+,A-,B+,B-,C+,C-,NP,P}
 
 @data
-A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,?,A,A,A,A,A
+A,A,A,A,A,A,A,A,A,A,A,A,A,A,?,A,A,?,?,?,?
